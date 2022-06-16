@@ -23,10 +23,10 @@ export default {
     ...mapState(["count"]),
     inputValue: {
       get() {
-        return this.$store.state.inputValue;
-      },
+        return this.$store.state.inputValue  ;
+      }, 
       set(newVal) {
-        this.$store.commit("updateInputValue", newVal);
+        this.$store.commit("updateInputValue",     newVal);
       },
     },
   },
@@ -34,7 +34,7 @@ export default {
     HelloWorld,
   },
   methods: {
-    ...mapMutations(["increment"]),
+  ...mapMutations(["increment"]),
     ...mapActions(["asyncIncrement"]),
     // add() {
     //   console.log(this.$store)
