@@ -11,21 +11,25 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@vueuse/core": "^8.7.5",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
+    "element-ui": "^2.15.9",
+    "vue": "^2.7.2",
     "vue-router": "^3.2.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-babel": "~4.5.18",
+    "@vue/cli-service": "~4.5.18",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
     "husky": "^8.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "2.7.1",
-    "vue-template-compiler": "^2.6.11"
+    "prettier": "2.7.1"
   },
   "browserslist": [
     "> 1%",
