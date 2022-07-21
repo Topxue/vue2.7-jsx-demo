@@ -1,4 +1,4 @@
-# 在vue中写jsx的几种方式
+# 在vue2中写jsx的几种方式，包含vue2.7
 ## 版本
 本文版本配置 vue: 2.7.2 vue-cli: ~4.5.18；
 [github仓库地址]()
@@ -79,26 +79,49 @@ export default {
 </script>
 ```
 ### vue2.7在.vue文件中结合compositionApi和jsx
-目前在setup中return jsx会报错，目测是loader没有支持（有知道解决办法的老师傅也可以告诉我一下..），只能在setup使用compositionApi再加上render函数里写jsx
+在setup里写jsx需要配置babel preset,具体参考[文档](https://github.com/vuejs/jsx-vue2/releases/tag/v1.3.0#fn-1)
+我用的vue-cli v4,配置如下
+```
+// babel.config.js
+module.exports = {
+  presets: [
+    [
+      "@vue/cli-plugin-babel/preset",
+      {
+        jsx: {
+          compositionAPI: true,
+        },
+      },
+    ],
+  ],
+};
+```
 ```
 // sfcJsx.vue
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from "vue";
 export default {
   setup() {
     const count = ref(0);
+    const refH1 = ref(null);
+    onMounted(() => {
+      console.log(refH1.value);
+      refH1.value.value = "hello world";
+    });
     setTimeout(() => {
-      count.value = 12
+      count.value = 12;
     }, 1000);
-    return {
-      count
-    }
-  },
-  render(h) {
-    return (
-      <h1>{this.count ? <span>11</span>: <span>22</span>}</h1>
-    )
+    return () => (
+      <div>
+        <h1>{count ? <span>11</span> : <span>22</span>}</h1>
+        <input ref={refH1} type="text"></input>
+      </div>
+    );
   }
-}
+};
 </script>
 ```
+不过文档也提到了，可能会有不安全隐患。有遇到问题的，可以留言交流
+> This feature is opt-in, because there are subtle differences between the global h function and this.$createElement1, which may affect some legacy codebases.
+It's safe to use it in new projects, though.
+

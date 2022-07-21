@@ -11,16 +11,10 @@ export default {
     setTimeout(() => {
       count.value = 12;
     }, 1000);
-    return {
-      count,
-      refH1,
-    };
-  },
-  render(h) {
-    return (
+    return () => (
       <div>
-        <h1>{this.count ? <span>11</span> : <span>22</span>}</h1>
-        <input ref="refH1" type="text"></input>
+        <h1>{count ? <span>11</span> : <span>22</span>}</h1>
+        <input ref={refH1} type="text"></input>
       </div>
     );
   },
